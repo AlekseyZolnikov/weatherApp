@@ -16,7 +16,7 @@ public class WeatherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
-        textView = findViewById(R.id.city_text_view);
+        textView = findViewById(R.id.weather_title_city);
         Intent intent = getIntent();
         String str = intent.getStringExtra(EXTRA_CITY_KEY);
         textView.setText(str);
