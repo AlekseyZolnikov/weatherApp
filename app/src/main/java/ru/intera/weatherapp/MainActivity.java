@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,8 +31,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Intent intent = new Intent(this, WeatherActivity.class);
         String str = editText.getText().toString();
+
+        if (str.equals("")) {
+            makeToast();
+            editText.requestFocus();
+            return;
+        }
+
         intent.putExtra(WeatherActivity.EXTRA_CITY_KEY, str);
         startActivity(intent);
+    }
+
+    private void makeToast() {
+        Toast toast = Toast.makeText(this, "Введите город", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.show();
     }
 
     @Override
