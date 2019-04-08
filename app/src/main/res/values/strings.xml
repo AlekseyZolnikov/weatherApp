@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="city_label">Введите город</string>
+    <string name="show_btn">Показать погоду</string>
+    <string name="edit_text_hint">Москва</string>
+    <string name="copyright">Developed by Zolnikov Aleksey</string>
 </resources>
