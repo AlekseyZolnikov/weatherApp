@@ -1,6 +1,7 @@
 package ru.intera.weatherapp;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +10,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editText;
     private static final String TAG = "MainActivity";
     private static final String KEY_EDIT_TEXT = "KEY_EDIT_TEXT";
+    FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    private void startWeatherActivity() {
         Intent intent = new Intent(this, WeatherActivity.class);
         String str = editText.getText().toString();
 
@@ -41,6 +48,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         intent.putExtra(WeatherActivity.EXTRA_CITY_KEY, str);
         startActivity(intent);
+    }
+
+    private void checkOrientation() {
+        if (frameLayout != null) {
+            showFragment(position);
+        }else {
+            startWeatherActivity();
+        }
+    }
+
+    private void showFragment(int position) {
+        Fragment fragment;
+        fragment = new Wea();
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_layout_activity_second, fragment)
+                .commit();
     }
 
     private void makeToast() {

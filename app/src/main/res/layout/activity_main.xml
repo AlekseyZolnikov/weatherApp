@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:inputType="text"
         app:layout_constraintTop_toBottomOf="@+id/main_label_city"
         android:hint="@string/edit_text_hint"
         android:textColorHint="@android:color/darker_gray" />
