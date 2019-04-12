@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "MainActivity";
     private static final String KEY_EDIT_TEXT = "KEY_EDIT_TEXT";
     FrameLayout frameLayout;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         editText = findViewById(R.id.main_input_city);
+        frameLayout = findViewById(R.id.frame_layout_activity_weather);
 
         Button button = findViewById(R.id.main_btn_show);
         button.setOnClickListener(this);
@@ -34,36 +36,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
+        bundle = new Bundle();
+        String str = editText.getText().toString();
+        bundle.putString(WeatherFragment.BUNDLE_FRAGMENT_KEY, str);
+
+        checkOrientation();
     }
 
     private void startWeatherActivity() {
         Intent intent = new Intent(this, WeatherActivity.class);
-        String str = editText.getText().toString();
-
-        if (TextUtils.isEmpty(str)) {
-            makeToast();
-            editText.requestFocus();
-            return;
-        }
-
-        intent.putExtra(WeatherActivity.EXTRA_CITY_KEY, str);
         startActivity(intent);
     }
 
     private void checkOrientation() {
         if (frameLayout != null) {
-            showFragment(position);
+            showFragment();
         }else {
             startWeatherActivity();
         }
     }
 
-    private void showFragment(int position) {
-        Fragment fragment;
-        fragment = new Wea();
+    private void showFragment() {
 
+        Fragment fragment = new WeatherFragment();
+        fragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame_layout_activity_second, fragment)
+                .replace(R.id.frame_layout_activity_weather, fragment)
                 .commit();
     }
 
