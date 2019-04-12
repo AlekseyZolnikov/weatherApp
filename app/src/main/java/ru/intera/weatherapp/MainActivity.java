@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editText;
     private static final String TAG = "MainActivity";
     private static final String KEY_EDIT_TEXT = "KEY_EDIT_TEXT";
-    FrameLayout frameLayout;
-    Bundle bundle;
+    private FrameLayout frameLayout;
+    private String cityField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,22 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button button = findViewById(R.id.main_btn_show);
         button.setOnClickListener(this);
     }
-
-    @Override
-    public void onClick(View v) {
-
-        bundle = new Bundle();
-        String str = editText.getText().toString();
-        bundle.putString(WeatherFragment.BUNDLE_FRAGMENT_KEY, str);
-
-        checkOrientation();
-    }
-
-    private void startWeatherActivity() {
-        Intent intent = new Intent(this, WeatherActivity.class);
-        startActivity(intent);
-    }
-
     private void checkOrientation() {
         if (frameLayout != null) {
             showFragment();
@@ -56,13 +40,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void showFragment() {
+    @Override
+    public void onClick(View v) {
+        cityField = editText.getText().toString();
 
+        if (TextUtils.isEmpty(cityField)) {
+            makeToast();
+            editText.requestFocus();
+            return;
+        }
+
+        checkOrientation();
+    }
+
+    private void showFragment() {
+        Bundle bundle = new Bundle();
         Fragment fragment = new WeatherFragment();
+        bundle.putString(WeatherActivity.EXTRA_CITY_KEY, cityField );
         fragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame_layout_activity_weather, fragment)
                 .commit();
+    }
+
+    private void startWeatherActivity() {
+        Intent intent = new Intent(this, WeatherActivity.class);
+
+        intent.putExtra(WeatherActivity.EXTRA_CITY_KEY, cityField);
+        startActivity(intent);
     }
 
     private void makeToast() {
