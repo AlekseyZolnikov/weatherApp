@@ -21,5 +21,7 @@ public class WeatherActivity extends AppCompatActivity {
         String str = intent.getStringExtra(EXTRA_CITY_KEY);
         textView.setText(str);
 
+
+
     }
 }
