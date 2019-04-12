@@ -3,6 +3,7 @@ package ru.intera.weatherapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, WeatherActivity.class);
         String str = editText.getText().toString();
 
-        if (str.equals("")) {
+        if (TextUtils.isEmpty(str)) {
             makeToast();
             editText.requestFocus();
             return;

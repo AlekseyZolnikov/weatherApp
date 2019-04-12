@@ -4,4 +4,8 @@
     <string name="show_btn">Показать погоду</string>
     <string name="edit_text_hint">Москва</string>
     <string name="copyright">Developed by Zolnikov Aleksey</string>
+    <string name="current_temp">Текущая температура</string>
+    <string name="wind_speed">Скорость ветра</string>
+    <string name="pressure">Давление</string>
+    <string name="humidity">Влажность</string>
 </resources>
