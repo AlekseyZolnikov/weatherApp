@@ -18,7 +18,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editText;
     private static final String TAG = "MainActivity";
     private static final String KEY_EDIT_TEXT = "KEY_EDIT_TEXT";
-    FrameLayout frameLayout;
+    private FrameLayout frameLayout;
+    private String cityField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,45 +27,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         editText = findViewById(R.id.main_input_city);
+        frameLayout = findViewById(R.id.frame_layout_activity_weather);
 
         Button button = findViewById(R.id.main_btn_show);
         button.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
-
-    private void startWeatherActivity() {
-        Intent intent = new Intent(this, WeatherActivity.class);
-        String str = editText.getText().toString();
-
-        if (TextUtils.isEmpty(str)) {
-            makeToast();
-            editText.requestFocus();
-            return;
-        }
-
-        intent.putExtra(WeatherActivity.EXTRA_CITY_KEY, str);
-        startActivity(intent);
-    }
-
     private void checkOrientation() {
         if (frameLayout != null) {
-            showFragment(position);
+            showFragment();
         }else {
             startWeatherActivity();
         }
     }
 
-    private void showFragment(int position) {
-        Fragment fragment;
-        fragment = new Wea();
+    @Override
+    public void onClick(View v) {
+        cityField = editText.getText().toString();
 
+        if (TextUtils.isEmpty(cityField)) {
+            makeToast();
+            editText.requestFocus();
+            return;
+        }
+
+        checkOrientation();
+    }
+
+    private void showFragment() {
+        Bundle bundle = new Bundle();
+        Fragment fragment = new WeatherFragment();
+        bundle.putString(WeatherActivity.EXTRA_CITY_KEY, cityField );
+        fragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame_layout_activity_second, fragment)
+                .replace(R.id.frame_layout_activity_weather, fragment)
                 .commit();
+    }
+
+    private void startWeatherActivity() {
+        Intent intent = new Intent(this, WeatherActivity.class);
+
+        intent.putExtra(WeatherActivity.EXTRA_CITY_KEY, cityField);
+        startActivity(intent);
     }
 
     private void makeToast() {

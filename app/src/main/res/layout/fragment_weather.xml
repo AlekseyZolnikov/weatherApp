@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".WeatherFragment">
+
+    <TextView
+        android:id="@+id/weather_title_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/weather_temp_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/current_temp"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weather_title_city" />
+
+    <TextView
+        android:id="@+id/weather_temp_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7°"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/weather_temp_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/weather_temp_label" />
+
+    <TextView
+        android:id="@+id/weather_speed_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/wind_speed"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weather_temp_label" />
+
+    <TextView
+        android:id="@+id/weather_speed_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1м/с"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/weather_speed_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/weather_speed_label" />
+
+    <TextView
+        android:id="@+id/weather_pressure_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/pressure"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weather_speed_label" />
+
+    <TextView
+        android:id="@+id/weather_pressure_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="765мм.рт.ст."
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/weather_pressure_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/weather_pressure_label" />
+
+    <TextView
+        android:id="@+id/weather_humidity_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/humidity"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weather_pressure_label" />
+
+    <TextView
+        android:id="@+id/weather_humidity_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="75%"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/weather_humidity_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/weather_humidity_label" />
+
+
+</android.support.constraint.ConstraintLayout>
