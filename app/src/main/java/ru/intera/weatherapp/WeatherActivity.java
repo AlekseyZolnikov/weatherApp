@@ -1,6 +1,7 @@
 package ru.intera.weatherapp;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -18,8 +19,16 @@ public class WeatherActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.weather_title_city);
         Intent intent = getIntent();
-        String str = intent.getStringExtra(EXTRA_CITY_KEY);
-        textView.setText(str);
+        String cityField = intent.getStringExtra(EXTRA_CITY_KEY);
+
+        Bundle bundle = new Bundle();
+        Fragment fragment = new WeatherFragment();
+        bundle.putString(WeatherActivity.EXTRA_CITY_KEY, cityField );
+        fragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_activity_weather, fragment)
+                .commit();
+
 
     }
 }

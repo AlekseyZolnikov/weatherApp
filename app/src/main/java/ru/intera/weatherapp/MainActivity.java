@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private EditText editText;
     private static final String TAG = "MainActivity";
@@ -28,9 +28,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         editText = findViewById(R.id.main_input_city);
         frameLayout = findViewById(R.id.frame_layout_activity_weather);
-
-        Button button = findViewById(R.id.main_btn_show);
-        button.setOnClickListener(this);
     }
     private void checkOrientation() {
         if (frameLayout != null) {
@@ -40,8 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    public void onClick(View v) {
+    public void onClick(View view)  {
         cityField = editText.getText().toString();
 
         if (TextUtils.isEmpty(cityField)) {
@@ -93,4 +89,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d(TAG, "onRestoreInstanceState: " + str);
         editText.setText(str);
     }
+
 }

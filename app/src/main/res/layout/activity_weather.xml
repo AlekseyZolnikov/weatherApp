@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".WeatherActivity">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/fragment_activity_weather"
-        android:name="ru.intera.weatherapp.WeatherFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/copyright"/>
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/copyright"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/copyright"
