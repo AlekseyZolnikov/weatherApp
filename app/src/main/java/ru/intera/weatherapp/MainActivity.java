@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -26,9 +25,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editText = findViewById(R.id.main_input_city);
+        Fragment fragment = new MainFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_activity_main, fragment)
+                .commit();
+
         frameLayout = findViewById(R.id.frame_layout_activity_weather);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        editText = findViewById(R.id.main_input_city);
+        cityField = editText.getText().toString();
+    }
+
     private void checkOrientation() {
         if (frameLayout != null) {
             showFragment();
@@ -37,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onClick(View view)  {
-        cityField = editText.getText().toString();
+    public void onClick(View view) {
 
+        cityField = editText.getText().toString();
         if (TextUtils.isEmpty(cityField)) {
             makeToast();
             editText.requestFocus();
@@ -48,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         checkOrientation();
     }
+
+
 
     private void showFragment() {
         Bundle bundle = new Bundle();
@@ -89,5 +103,4 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onRestoreInstanceState: " + str);
         editText.setText(str);
     }
-
 }
