@@ -10,6 +10,10 @@ import android.widget.TextView;
 public class WeatherActivity extends AppCompatActivity {
 
     public static final String EXTRA_CITY_KEY = "EXTRA_CITY_KEY";
+    public static final String EXTRA_TEMP_KEY = "EXTRA_TEMP_KEY";
+    public static final String EXTRA_SPEED_KEY = "EXTRA_SPEED_KEY";
+    public static final String EXTRA_PRESSURE_KEY = "EXTRA_PRESSURE_KEY";
+    public static final String EXTRA_HUMIDITY_KEY = "EXTRA_HUMIDITY_KEY";
     private TextView textView;
     
     @Override
@@ -20,10 +24,19 @@ public class WeatherActivity extends AppCompatActivity {
         textView = findViewById(R.id.weather_title_city);
         Intent intent = getIntent();
         String cityField = intent.getStringExtra(EXTRA_CITY_KEY);
+        boolean checkboxTempValue = intent.getBooleanExtra(EXTRA_TEMP_KEY, false);
+        boolean checkboxSpeedValue = intent.getBooleanExtra(EXTRA_SPEED_KEY, false);
+        boolean checkboxPressureValue = intent.getBooleanExtra(EXTRA_PRESSURE_KEY, false);
+        boolean checkboxTHumidityValue = intent.getBooleanExtra(EXTRA_HUMIDITY_KEY, false);
 
         Bundle bundle = new Bundle();
         Fragment fragment = new WeatherFragment();
-        bundle.putString(WeatherActivity.EXTRA_CITY_KEY, cityField );
+        bundle.putString(EXTRA_CITY_KEY, cityField );
+        bundle.putBoolean(EXTRA_TEMP_KEY, checkboxTempValue );
+        bundle.putBoolean(EXTRA_SPEED_KEY, checkboxSpeedValue );
+        bundle.putBoolean(EXTRA_PRESSURE_KEY, checkboxPressureValue );
+        bundle.putBoolean(EXTRA_HUMIDITY_KEY, checkboxTHumidityValue );
+
         fragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_activity_weather, fragment)
