@@ -3,6 +3,7 @@ package ru.intera.weatherapp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +15,10 @@ import android.widget.TextView;
 public class WeatherFragment extends Fragment {
 
     private TextView textView;
-    private TextView tempValue;
-    private TextView tempLabel;
-    private TextView speedValue;
-    private TextView speedLabel;
-    private TextView pressureValue;
-    private TextView pressureLabel;
-    private TextView humidityValue;
-    private TextView humidityLabel;
+    private View weatherLayout;
+    private View speedLayout;
+    private View pressureLayout;
+    private View humidityLayout;
 
     public WeatherFragment() {
         // Required empty public constructor
@@ -36,25 +33,18 @@ public class WeatherFragment extends Fragment {
 
         textView = fragmentView.findViewById(R.id.weather_title_city);
 
-        tempValue = fragmentView.findViewById(R.id.weather_temp_value);
-        tempLabel = fragmentView.findViewById(R.id.weather_temp_label);
-        tempValue.setVisibility(View.INVISIBLE);
-        tempLabel.setVisibility(View.INVISIBLE);
+        weatherLayout = fragmentView.findViewById(R.id.weather_layout);
+        weatherLayout.setVisibility(View.GONE);
 
-        speedValue = fragmentView.findViewById(R.id.weather_speed_value);
-        speedLabel = fragmentView.findViewById(R.id.weather_speed_label);
-        speedValue.setVisibility(View.INVISIBLE);
-        speedLabel.setVisibility(View.INVISIBLE);
+        speedLayout = fragmentView.findViewById(R.id.speed_layout);
+        speedLayout.setVisibility(View.GONE);
 
-        pressureValue = fragmentView.findViewById(R.id.weather_pressure_value);
-        pressureLabel = fragmentView.findViewById(R.id.weather_pressure_label);
-        pressureValue.setVisibility(View.INVISIBLE);
-        pressureLabel.setVisibility(View.INVISIBLE);
+        pressureLayout = fragmentView.findViewById(R.id.pressure_layout);
+        pressureLayout.setVisibility(View.GONE);
 
-        humidityValue = fragmentView.findViewById(R.id.weather_humidity_value);
-        humidityLabel = fragmentView.findViewById(R.id.weather_humidity_label);
-        humidityValue.setVisibility(View.INVISIBLE);
-        humidityLabel.setVisibility(View.INVISIBLE);
+        humidityLayout = fragmentView.findViewById(R.id.humidity_layout);
+        humidityLayout.setVisibility(View.GONE);
+
 
         if(getArguments() != null) {
             String str = getArguments().getString(WeatherActivity.EXTRA_CITY_KEY);
@@ -64,20 +54,16 @@ public class WeatherFragment extends Fragment {
             boolean checkboxHumidityValue = getArguments().getBoolean(WeatherActivity.EXTRA_HUMIDITY_KEY, false);
             textView.setText(str);
             if (checkboxTempValue) {
-                tempValue.setVisibility(View.VISIBLE);
-                tempLabel.setVisibility(View.VISIBLE);
+                weatherLayout.setVisibility(View.VISIBLE);
             }
             if (checkboxSpeedValue) {
-                speedValue.setVisibility(View.VISIBLE);
-                speedLabel.setVisibility(View.VISIBLE);
+                speedLayout.setVisibility(View.VISIBLE);
             }
             if (checkboxPressureValue) {
-                pressureValue.setVisibility(View.VISIBLE);
-                pressureLabel.setVisibility(View.VISIBLE);
+                pressureLayout.setVisibility(View.VISIBLE);
             }
             if (checkboxHumidityValue) {
-                humidityValue.setVisibility(View.VISIBLE);
-                humidityLabel.setVisibility(View.VISIBLE);
+                humidityLayout.setVisibility(View.VISIBLE);
             }
         }
         return fragmentView;
